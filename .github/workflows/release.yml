@@ -25,4 +25,4 @@ jobs:
       - name: Push image
         run: |
           docker version
-          docker image push --all-tags ghcr.io/$GITHUB_REPOSITORY
+          docker image push ghcr.io/$GITHUB_REPOSITORY:latest
