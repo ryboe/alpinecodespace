@@ -1,0 +1,28 @@
+name: Weekly Release
+
+# Build a fresh image every week.
+on:
+  schedule:
+    - cron: '0 14 * * 1' # run at 9am eastern time every Monday
+
+env:
+  DOCKER_BUILDKIT: "1"
+
+jobs:
+  build_and_upload_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Log in to GHCR
+        run: echo $GITHUB_TOKEN | docker login --username $GITHUB_ACTOR --password-stdin ghcr.io
+      - name: Build image
+        run: |
+          docker version
+          docker image build --pull --platform=linux/amd64 --tag=ghcr.io/$GITHUB_REPOSITORY:${{ github.ref_name}} --tag=ghcr.io/$GITHUB_REPOSITORY:latest - < Dockerfile
+      - name: Push image
+        run: |
+          docker version
+          docker image push --all-tags ghcr.io/$GITHUB_REPOSITORY
