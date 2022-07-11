@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="Ryan Boehning <1250684+ryboe@users.norep
 
 # dlv needs gcc and musl-dev. fzf depends on perl for reverse search. The rest
 # are useful dev tools.
-RUN apk add --no-cache fd file fzf gcc musl-dev perl ripgrep
+RUN apk add --no-cache bat exa fd file fzf gcc musl-dev perl ripgrep
 
 # Install the latest gh CLI tool. The first request fetches the URL for the
 # latest release tarball. The second request downloads the tarball.
