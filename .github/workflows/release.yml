@@ -3,7 +3,10 @@ name: Weekly Release
 # Build a fresh image every week.
 on:
   schedule:
-    - cron: '0 14 * * 1' # run at 9am eastern time every Monday
+    - cron: '0 14 * * 1' # run at 9am eastern US time every Monday
+  push:
+    branches:
+      - main
 
 env:
   DOCKER_BUILDKIT: "1"
