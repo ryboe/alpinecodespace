@@ -13,6 +13,8 @@ image, it supports all Codespace features. In addition, it has these changes:
 3. These packages are installed:
 
    ```txt
+   bat
+   exa
    fd
    file
    fzf
