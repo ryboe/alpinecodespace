@@ -20,6 +20,8 @@ jobs:
         with:
           fetch-depth: 1
       - name: Log in to GHCR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo $GITHUB_TOKEN | docker login --username $GITHUB_ACTOR --password-stdin ghcr.io
       - name: Build image
         run: |
