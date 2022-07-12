@@ -22,6 +22,7 @@ image, it supports all Codespace features. In addition, it has these changes:
    gh
    gitprompt
    musl-dev
+   perl    # fzf dependency :(
    ripgrep
    ```
 
@@ -30,7 +31,9 @@ image, it supports all Codespace features. In addition, it has these changes:
 
 ## Usage
 
-Here's an example of how to create a custom Go Codespace image from this image:
+Here are some examples of how to create a custom Codespace images:
+
+### Go
 
 ```dockerfile
 FROM ghcr.io/ryboe/alpinecodespace:latest
@@ -40,7 +43,7 @@ COPY --from=goimage /usr/local/go/ /usr/local/go/
 ENV GOPATH="/home/vscode/go"
 ENV PATH="${GOPATH}/bin:/usr/local/go/bin:${PATH}"
 
-# These are all the Go tools installed by the "Go: Install/Update Tools"
+# These are all the tools installed by the "Go: Install/Update Tools"
 # command.
 RUN go install github.com/haya14busa/goplay/cmd/goplay@latest
 RUN go install github.com/josharian/impl@latest
@@ -50,4 +53,13 @@ RUN go install mvdan.cc/gofumpt@latest
 RUN go install golang.org/x/tools/gopls@latest
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+```
+
+### Rust
+
+```dockerfile
+ENV PATH="$HOME/.cargo/bin:$PATH"
+
+RUN set -o pipefail \
+    && curl --retry 3 --retry-delay 2 --max-time 30 -sSfL https://sh.rustup.rs | sh -s -- -y
 ```
