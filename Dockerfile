@@ -8,7 +8,8 @@ RUN apk add --no-cache bat exa fd file fzf gcc musl-dev perl ripgrep
 
 # Install the latest gh CLI tool. The first request fetches the URL for the
 # latest release tarball. The second request downloads the tarball.
-RUN wget --quiet --timeout=30 --output-document=- 'https://api.github.com/repos/cli/cli/releases/latest' \
+RUN set -o pipefail \
+    && wget --quiet --timeout=30 --output-document=- 'https://api.github.com/repos/cli/cli/releases/latest' \
     | jq -r '.assets[] | select(.name | test("gh_.*?_linux_amd64.tar.gz")).browser_download_url' \
     | wget --quiet --timeout=180 --input-file=- --output-document=- \
     | sudo tar -xvz -C /usr/local/ --strip-components=1
