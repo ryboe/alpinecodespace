@@ -36,6 +36,9 @@ Here are some examples of how to create a custom Codespace images:
 ### Go
 
 ```dockerfile
+ARG GO_VERSION
+FROM golang:${GO_VERSION}-alpine AS goimage
+
 FROM ghcr.io/ryboe/alpinecodespace:latest
 
 COPY --from=goimage /usr/local/go/ /usr/local/go/
