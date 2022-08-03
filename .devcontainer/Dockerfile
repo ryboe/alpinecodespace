@@ -1,3 +1,3 @@
 FROM ghcr.io/ryboe/alpinecodespace:latest
 
-RUN apk add --update docker
+RUN sudo apk add --update docker
