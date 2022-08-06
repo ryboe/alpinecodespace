@@ -13,21 +13,9 @@ image, it supports all Codespace features. In addition, it has these changes:
 3. These packages are installed:
 
    ```txt
-   bat
-   exa
-   fd
-   file
-   fzf
    gcc
-   gh
-   gitprompt
    musl-dev
-   perl    # fzf dependency :(
-   ripgrep
    ```
-
-   Regardless of your work, you're very likely to need a C compiler (`gcc`) and
-   a libc (`musl-dev`). The rest are very useful utilities that I recommend.
 
 ## Usage
 

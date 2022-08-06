@@ -1,7 +1,7 @@
 {
     "name": "Alpine Codespace",
     "build": {
-        "dockerfile": "Dockerfile",
+        "dockerfile": "Dockerfile"
     },
     "settings": {
         "[dockerfile]": {
@@ -10,11 +10,11 @@
         "editor.formatOnSave": true,
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
-        "files.trimTrailingWhitespace": true,
+        "files.trimTrailingWhitespace": true
     },
     "extensions": [
         "davidanson.vscode-markdownlint",
         "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml",
-    ],
+        "redhat.vscode-yaml"
+    ]
 }
