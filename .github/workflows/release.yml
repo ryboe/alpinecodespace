@@ -8,26 +8,27 @@ on:
     branches:
       - main
 
-env:
-  DOCKER_BUILDKIT: "1"
-
 jobs:
   build_and_upload_image:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
+      - name: Set up Docker buildx
+        uses: docker/setup-buildx-action@v2
       - name: Log in to GHCR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo $GITHUB_TOKEN | docker login --username $GITHUB_ACTOR --password-stdin ghcr.io
-      - name: Build image
-        run: |
-          docker version
-          docker image build --pull --platform=linux/amd64 --tag=ghcr.io/$GITHUB_REPOSITORY:latest - < Dockerfile
-      - name: Push image
-        run: |
-          docker version
-          docker image push ghcr.io/$GITHUB_REPOSITORY:latest
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - name: Build and Push
+        uses: docker/build-push-action@v3
+        with:
+          platforms: linux/amd64 # GitHub only offers AMD64 codespaces
+          pull: true
+          push: true
+          tags: ghcr.io/$GITHUB_REPOSITORY:latest
+          cache-from: type=gha
+          # mode=max means "cache everything possible". This ensures maximum
+          # use of the cache, but will use up GitHub's 10 GB cache size limit
+          # faster.
+          cache-to: type=gha,mode=max
