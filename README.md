@@ -19,7 +19,7 @@ image, it supports all Codespace features. In addition, it has these changes:
 
 ## Usage
 
-Here are some examples of how to create a custom Codespace images:
+Here are some examples of how to create custom Codespace images:
 
 ### Go
 
