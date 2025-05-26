@@ -5,7 +5,7 @@ for a custom [Codespace](https://github.com/features/codespaces) project.
 
 ## Features
 
-Since it's based on the `mcr.microsoft.com/vscode/devcontainers/base:alpine`
+Since it's based on the `mcr.microsoft.com/devcontainers/base:alpine`
 image, it supports all Codespace features. In addition, it has these changes:
 
 1. The default user will be `vscode`.
