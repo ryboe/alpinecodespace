@@ -1,7 +1,8 @@
 {
     "recommendations": [
         "davidanson.vscode-markdownlint",
-        "ms-azuretools.vscode-docker",
+        "docker.docker",
+        "ms-azuretools.vscode-containers",
         "redhat.vscode-yaml",
     ]
 }
