@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Set up Docker buildx
         uses: docker/setup-buildx-action@v3
-      - name: Add OCI Labels
-        id: add_oci_labels
+      - name: Add Metadata
+        id: add_metadata
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
@@ -32,8 +32,8 @@ jobs:
           pull: true
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
-          annotations: ${{ steps.add_oci_labels.outputs.annotations }}
-          labels: ${{ steps.add_oci_labels.outputs.labels }}
+          annotations: ${{ steps.add_metadata.outputs.annotations }}
+          labels: ${{ steps.add_metadata.outputs.labels }}
           provenance: mode=max
           sbom: true
           cache-from: type=gha
